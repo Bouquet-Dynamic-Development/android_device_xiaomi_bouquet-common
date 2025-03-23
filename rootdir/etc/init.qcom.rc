@@ -112,6 +112,12 @@ on boot
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/device/extldo
     chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
 
+    # Enable qcrild and data services on boot
+    enable vendor.qcrild
+    enable vendor.qcrild2
+    enable vendor.dataqti
+    enable vendor.dataadpl
+
     # This location is used by QCRIL to host UNIX domain
     # socket files used for internal IPC within QCRIL
     # modules
