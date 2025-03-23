@@ -300,6 +300,11 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     ueventd.qcom.rc
 
+# USB
+PRODUCT_PACKAGES += usb_compositions.conf \
+    android.hardware.usb-service.qti \
+    android.hardware.usb.gadget-service.qti
+
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
@@ -457,9 +462,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.basic
 
 # Updater
 AB_OTA_UPDATER := false
