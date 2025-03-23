@@ -302,8 +302,7 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # USB
-PRODUCT_PACKAGES += \
-    usb_compositions.conf \
+PRODUCT_PACKAGES += usb_compositions.conf \
     android.hardware.usb-service.qti \
     android.hardware.usb.gadget-service.qti
 
