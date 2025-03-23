@@ -95,7 +95,8 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libsndmonitor \
-    libvolumelistener
+    libvolumelistener \
+    libspkrprot
 
 # Audio configs
 PRODUCT_COPY_FILES += \
