@@ -563,6 +563,10 @@ on property:init.svc.vendor.charger=running
     write /sys/devices/system/cpu/cpu5/online 0
     write /sys/devices/system/cpu/cpu7/online 0
 
+
+    # Turn on sleep modes
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
     start vendor.power_off_alarm
 
 service vendor.power_off_alarm /vendor/bin/power_off_alarm
