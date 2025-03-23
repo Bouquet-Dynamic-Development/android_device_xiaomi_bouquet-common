@@ -9,3 +9,6 @@ allow init adsprpcd_file:file mounton;
 allow vendor_init proc_watermark_scale_factor:file { write };
 
 set_prop(vendor_init, camera_prop)
+
+allow thermal-engine config_prop:file read;
+allow hal_bluetooth_qti default_prop:file read;
