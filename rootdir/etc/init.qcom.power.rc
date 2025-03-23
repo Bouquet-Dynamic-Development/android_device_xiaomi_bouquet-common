@@ -26,6 +26,8 @@
 #
 
 on enable-low-power
+    # Enable bus-dcvs
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/governor "bw_hwmon"
     # Enable PowerHAL hint processing
     setprop vendor.powerhal.init 1
 
