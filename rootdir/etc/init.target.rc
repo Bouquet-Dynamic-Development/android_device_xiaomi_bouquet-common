@@ -60,6 +60,7 @@ on fs
     copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
     chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
     mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
+    start bouquet-sh
 
 on post-fs
     start vendor.qseecomd
@@ -138,6 +139,12 @@ service vendor.per_proxy /system/vendor/bin/pm-proxy
     user system
     group system
     disabled
+
+service bouquet-sh /vendor/bin/init.bouquet.sh
+    class main
+    user root
+    group root system
+    oneshot
 
 on property:init.svc.vendor.per_mgr=running
     start vendor.per_proxy
