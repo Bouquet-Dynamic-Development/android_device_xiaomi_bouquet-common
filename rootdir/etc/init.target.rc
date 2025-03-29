@@ -60,13 +60,12 @@ on fs
     copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
     chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
     mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
-    start bouquet-sh
 
 on post-fs
     start vendor.qseecomd
     wait_for_prop vendor.sys.listeners.registered true
     write /dev/ipa 1
-
+    
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
@@ -140,11 +139,6 @@ service vendor.per_proxy /system/vendor/bin/pm-proxy
     group system
     disabled
 
-service bouquet-sh /vendor/bin/init.bouquet.sh
-    class main
-    user root
-    group root system
-    oneshot
 
 on property:init.svc.vendor.per_mgr=running
     start vendor.per_proxy

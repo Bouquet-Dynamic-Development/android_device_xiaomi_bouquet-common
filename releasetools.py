@@ -25,6 +25,14 @@ def FullOTA_InstallBegin(info):
   info.script.AppendExtra('run_program("/sbin/sh", "/tmp/flash_super_dummy.sh");')
   return
 
+def FullOTA_InstallEnd(info):
+  # Run bouquet script
+  bouquet_script = open("device/xiaomi/bouquet-common/bouquet.sh", 'r').read()
+  common.ZipWriteStr(info.output_zip, "install/bin/bouquet.sh", bouquet_script);
+  info.script.AppendExtra('package_extract_file("install/bin/bouquet.sh", "/tmp/bouquet.sh");')
+  info.script.AppendExtra('run_program("/sbin/sh", "/tmp/bouquet.sh");')
+  return
+
 def AddImage(info, dir, basename, dest):
   path = dir + "/" + basename
   if path not in info.input_zip.namelist():
