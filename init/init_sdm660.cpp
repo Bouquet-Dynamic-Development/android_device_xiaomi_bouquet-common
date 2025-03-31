@@ -41,6 +41,8 @@
 #include "vendor_init.h"
 #include "property_service.h"
 
+using android::base::GetProperty;
+
 char const *heapstartsize;
 char const *heapgrowthlimit;
 char const *heapsize;
@@ -96,6 +98,45 @@ void vendor_load_properties()
 {
     check_device();
 
+    const char *whyred_model = "Redmi Note 5 Pro";
+    const char *tulip_model = "Redmi Note 6 Pro";
+    const char *whyred_fingerprint = "xiaomi/whyred/whyred:9/PKQ1.180904.001/V12.0.3.0.PEICNXM:user/release-keys";
+    const char *tulip_fingerprint = "xiaomi/tulip/tulip:9/PKQ1.180904.001/V12.0.1.0.PEKMIXM:user/release-keys";
+
+    std::string hwdevice = GetProperty("ro.boot.hwdevice", "");
+
+    const char *model;
+    const char *fingerprint;
+
+    if (hwdevice == "whyred") {
+        model = whyred_model;
+        fingerprint = whyred_fingerprint;
+    } else { // Assume tulip
+        model = tulip_model;
+        fingerprint = tulip_fingerprint;
+    }
+
+    // Override model properties
+    property_override("ro.product.bootimage.model", model);
+    property_override("ro.product.model", model);
+    property_override("ro.product.odm.model", model);
+    property_override("ro.product.product.model", model);
+    property_override("ro.product.system.model", model);
+    property_override("ro.product.system_ext.model", model);
+    property_override("ro.product.vendor.model", model);
+    property_override("ro.product.vendor_dlkm.model", model);
+
+    // Override fingerprint properties
+    property_override("ro.bootimage.build.fingerprint", fingerprint);
+    property_override("ro.build.fingerprint", fingerprint);
+    property_override("ro.odm.build.fingerprint", fingerprint);
+    property_override("ro.product.build.fingerprint", fingerprint);
+    property_override("ro.system.build.fingerprint", fingerprint);
+    property_override("ro.system_ext.build.fingerprint", fingerprint);
+    property_override("ro.vendor.build.fingerprint", fingerprint);
+    property_override("ro.vendor_dlkm.build.fingerprint", fingerprint);
+
+    // Dalvik heap properties
     property_override("dalvik.vm.heapstartsize", heapstartsize);
     property_override("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
     property_override("dalvik.vm.heapsize", heapsize);
