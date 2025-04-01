@@ -528,6 +528,3 @@ PRODUCT_COPY_FILES += \
 # Updatable Apex
 OVERRIDE_PRODUCT_COMPRESSED_APEX := false
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
-# Inherit the proprietary files
-$(call inherit-product, vendor/xiaomi/bouquet-common/bouquet-common-vendor.mk)
